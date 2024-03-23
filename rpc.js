@@ -1,3 +1,5 @@
+// see https://github.com/Fatih5252/Games-Bot-discord-bot/blob/main/RPC-overview.md
+
 const ID = `1217541066434154627`;
 const DiscordRPC = require('discord-rpc');
 const RPC = new DiscordRPC.Client({ transport: 'ipc' });
