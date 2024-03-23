@@ -7,3 +7,5 @@ Heya guys this is the Games discord bot Source code!
 
 # Here is a overview:
 ![Discord Bots](https://top.gg/api/widget/1217541066434154627.svg)(https://top.gg/bot/1217541066434154627)
+
+and please dont copy the code and use it for yourself!
