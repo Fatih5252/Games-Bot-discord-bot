@@ -7,7 +7,7 @@ client.commands = new Collection();
 require('dotenv').config();
 
 client.on('ready', () => {
-    client.user.setStatus('dnd')
+    client.user.setPresence({ activities: [{ name: '/commands'}], status: 'dnd' })
 })
 
 const functions = fs.readdirSync("./src/functions").filter(file => file.endsWith(".js"));
