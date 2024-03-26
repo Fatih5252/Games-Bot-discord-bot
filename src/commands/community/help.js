@@ -1,129 +1,67 @@
-const { SlashCommandBuilder } = require('@discordjs/builders');
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder, Embed } = require('discord.js');
+const pagination = require('../../functions/pagination');
 
 module.exports = {
     data: new SlashCommandBuilder()
-    .setName('help')
-    .setDescription('Shows you all commands!'),
-    async execute (interaction, client) {
+    .setName('commands')
+    .setDescription('All the commands that the bot has'),
+    async execute (interaction) {
 
-        const embed0 = new EmbedBuilder()
-        .setColor("Blue")
-        .setTitle("Help & Commands")
-        .setDescription("Here are all the commands!")
-        .addFields({ name: "Page 1", value: "welcome (button 1)" })
-        .addFields({ name: "Page 2", value: "Game commands (button 2)" })
-        .addFields({ name: "Page 3", value: "Help commands (button 3)" })
+        const embeds = [];
 
-        const embed1 = new EmbedBuilder()
-        .setColor("Blue")
-        .setTitle("thanks for inviting me!")
-        .setDescription("i am the games bot discord bot! you can see all my commands by clicking the buttons below!")
-        .setFooter({ text: "welcome" })
-        .setTimestamp()
+        var page0 = `
+        ## pages
+        page 1 = Thanks invite
+        page 2 = Game Commands
+        Page 3 = Help commands`
 
-        const embed2 = new EmbedBuilder()
-        .setColor("Blue")
-        .setTitle("Game commands")
-        .setDescription("Here are all the game commands!")
-        .setFields({ name: "/2048", value: "Play 2048!" })
-        .setFields({ name: "/connect4", value: "Play connect4!" })
-        .setFields({ name: "/emojify", value: "Emojify your text!" })
-        .setFields({ name: "/fasttype", value: "Play fasttype!" })
-        .setFields({ name: "/findemoji", value: "Play findemoji!" })
-        .addFields({ name: "/flood", value: "Play flood!" })
-        .addFields({ name: "/guessthepokemon", value: "Play guessthepokemon!" })
-        .addFields({ name: "/hangman", value: "Play hangman!" })
-        .addFields({ name: "/matchpairs", value: "Play matchpairs!" })
-        .addFields({ name: "/minesweeper", value: "Play minesweeper!" })
-        .addFields({ name: "/rockpaperscissors", value: "Play rockpaperscissors!" })
-        .addFields({ name: "/slots", value: "Play slots!" })
-        .addFields({ name: "/slots", value: "Play slots!" })
-        .addFields({ name: "/snake", value: "Play snake!" })
-        .addFields({ name: "/tictactoe", value: "Play tictactoe!" })
-        .addFields({ name: "/trivia", value: "Play trivia!" })
-        .addFields({ name: "/wordle", value: "Play wordle!" })
-        .addFields({ name: "/would-you-rather", value: "Play wouldyourather!" })
-        .setFooter({ text: "Game commands" })
-        .setTimestamp()
+        var page1 = `
+        ## about the bot
+        first of all thanks for inviting the games bot!
+        you can find all of the commands in the second page!`
 
-        const embed3 = new EmbedBuilder()
-        .setColor("Blue")
-        .setTitle("Help commands")
-        .setDescription("here are the help commands!")
-        .addFields({ name: "/help", value: "Shows you all commands" })
-        .setFooter({ text: "Help commands" })
-        .setTimestamp()
+        var page2 = `
+        ## Game Commands
+        here are all the game commands!
+        **/findemoji**
+        Play findemoji!
+        **/flood**
+        Play flood!
+        **/guessthepokemon**
+        Play guessthepokemon!
+        **/hangman**
+        Play hangman!
+        **/matchpairs**
+        Play matchpairs!
+        **/minesweeper**
+        Play minesweeper!
+        **/rockpaperscissors**
+        Play rockpaperscissors!
+        **/slots**
+        Play slots!
+        **/snake**
+        Play snake!
+        **/tictactoe**
+        Play tictactoe!
+        **/trivia**
+        Play trivia!
+        **/wordle**
+        Play wordle!
+        **/would-you-rather**
+        Play wouldyourather!`
 
-        const button = new ActionRowBuilder()
-        .addComponents(
-            new ButtonBuilder()
-            .setCustomId('seite0')
-            .setLabel('Page 0')
-            .setStyle(ButtonStyle.Success),
+        var page3 = `
+        ## Help Commands
+        **/Help (this command)**
+        see all the commands that the bot has`
 
-            new ButtonBuilder()
-            .setCustomId('seite1')
-            .setLabel('Page 1')
-            .setStyle(ButtonStyle.Success),
+        for (var i = 0; i < 4; i++) {
+            if (i + 1 == 1) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page0).setTimestamp());
+            else if (i + 1 == 2) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page1).setTimestamp().setFooter({ text: `Thanks for inviting the Bot` }));
+            else if (i + 1 == 3) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page2).setTimestamp().setFooter({ text: `Game Commands` }));
+            else if (i + 1 == 4) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page3).setTimestamp().setFooter({ text: `Help Commands` }));
+        }
 
-            new ButtonBuilder()
-            .setCustomId('seite2')
-            .setLabel('Page 2')
-            .setStyle(ButtonStyle.Success),
-
-            new ButtonBuilder()
-            .setCustomId('seite3')
-            .setLabel('Page 3')
-            .setStyle(ButtonStyle.Success),
-            
-            new ButtonBuilder()
-            .setCustomId('buttons')
-            .setLabel(`${interaction.user.username}'s buttons`)
-            .setStyle(ButtonStyle.Secondary)
-            .setDisabled(true)
-        )
-
-        const message = await interaction.reply({ embeds: [embed0], components: [button] });
-        const collector = message.createMessageComponentCollector();
-
-        collector.on('collect', async i => {
-
-            if (i.customId === 'seite0') {
-
-                if (i.user.id !== interaction.user.id) {
-                    return i.reply({ content: `Only ${interaction.user} can use the buttons!`, ephemeral: true });
-                }
-
-                await i.update({ embeds: [embed0], components: [button] });
-            }
-
-            if (i.customId === 'seite1') {
-
-                if (i.user.id !== interaction.user.id) {
-                    return i.reply({ content: `Only ${interaction.user} can use the buttons!`, ephemeral: true });
-                }
-
-                await i.update({ embeds: [embed1], components: [button] });
-            }
-
-            if (i.customId === 'seite2') {
-
-                if (i.user.id !== interaction.user.id) {
-                    return i.reply({ content: `Only ${interaction.user} can use the buttons!`, ephemeral: true });
-                }
-
-                await i.update({ embeds: [embed2], components: [button] });
-            }
-
-            if (i.customId === 'seite3') {
-
-                if (i.user.id !== interaction.user.id) {
-                    return i.reply({ content: `Only ${interaction.user} can use the buttons!`, ephemeral: true });
-                }
-
-                await i.update({ embeds: [embed3], components: [button] });
-            }
-        })
+        await pagination(interaction, embeds);
     }
 }
