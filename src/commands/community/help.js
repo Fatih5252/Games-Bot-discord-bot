@@ -63,7 +63,7 @@ module.exports = {
         **Terms-of-Service:**
         https://fatih5252.github.io/Games-Bot/terms-of-service`
 
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < 5; i++) {
             if (i + 1 == 1) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page0).setTimestamp());
             else if (i + 1 == 2) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page1).setTimestamp().setFooter({ text: `Thanks for inviting the Bot` }));
             else if (i + 1 == 3) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page2).setTimestamp().setFooter({ text: `Game Commands` }));
