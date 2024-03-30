@@ -55,11 +55,20 @@ module.exports = {
         **/Help (this command)**
         see all the commands that the bot has`
 
+        var page4 = `
+        ## Links
+        Here are all the links (like privcy policy)
+        **Pivacy-Policy:**
+        https://fatih5252.github.io/Games-Bot/privacy-policy
+        **Terms-of-Service:**
+        https://fatih5252.github.io/Games-Bot/terms-of-service`
+
         for (var i = 0; i < 4; i++) {
             if (i + 1 == 1) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page0).setTimestamp());
             else if (i + 1 == 2) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page1).setTimestamp().setFooter({ text: `Thanks for inviting the Bot` }));
             else if (i + 1 == 3) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page2).setTimestamp().setFooter({ text: `Game Commands` }));
             else if (i + 1 == 4) embeds.push(new EmbedBuilder().setColor('Blurple').setDescription(page3).setTimestamp().setFooter({ text: `Help Commands` }));
+            else if (i + 1 == 5) embeds.push(new EmbedBuilder().setcolor('Blurple').setDescription(page4).setTimestamp().setFooter({ text: `Links` });
         }
 
         await pagination(interaction, embeds);
