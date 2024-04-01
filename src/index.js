@@ -49,3 +49,12 @@ client.on(Events.MessageCreate, async message => {
         }
     }
 })
+const GiveawaysManager = require('./giveaways');
+client.giveawayManager = new GiveawaysManager(client, {
+    default: {
+        botsCanWin: false,
+        embedColor: `0000ff`,
+        embedColorEnd: `0000ff`,
+        reaction: `🎉`,
+    },
+})
