@@ -1,0 +1,12 @@
+discord.js
+nodemon
+discord-gamecord
+dotenv
+@discordjs/builders
+mongoose@6.0.12
+axios
+ms
+discord-giveaways
+superagent
+emoji-aware
+captcha-canvas
