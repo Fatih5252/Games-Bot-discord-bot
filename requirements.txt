@@ -10,3 +10,4 @@ discord-giveaways
 superagent
 emoji-aware
 captcha-canvas
+discord-rpc
