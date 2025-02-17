@@ -12,3 +12,4 @@ emoji-aware
 captcha-canvas
 discord-rpc
 aki-api
+canvafy
