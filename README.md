@@ -1,3 +1,5 @@
+## WE MOVED OVER TO `https://github.com/fatih5252/new-games-bot-discord-bot` THIS CODE IS OUTDATED AND WILL NOT WORK
+
 # Games-Bot-discord-bot
 
 Heya guys this is the Games discord bot Source code!
